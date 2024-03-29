@@ -1,0 +1,21 @@
+.signup-main,.login-main {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+}
+.signup-form,
+.login-form {
+  padding: 20px;
+  font-size: 20px;
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .signup-logo,
+  .login-logo {
+    display: none;
+  }
+}

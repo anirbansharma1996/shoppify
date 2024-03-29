@@ -1,0 +1,18 @@
+.products-main{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    
+    gap: 7px;
+}
+.product-filter{
+    border: 1px solid;
+    height: 470px;
+    width: 30%;
+   
+}
+.product-card{
+    border: 1px solid;
+    height: 470px;
+    width: 70%;
+}

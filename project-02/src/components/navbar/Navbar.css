@@ -5,6 +5,8 @@ nav {
   padding: 5px 15px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   position: sticky;
+  top: 0;
+  background-color: white;
   z-index: 99;
 }
 a {
@@ -29,7 +31,7 @@ a > p:hover {
   justify-content: space-around;
   align-items: center;
   width: 30%;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 .mobile-nav{
     display: none;
