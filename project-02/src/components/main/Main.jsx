@@ -52,24 +52,24 @@ export function HeroSlide() {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img
-              height={"450px"}
-              src="https://www.creatopy.com/blog/wp-content/uploads/2018/05/animations-e-commerce.png"
+             
+              src="https://t4.ftcdn.net/jpg/05/96/62/65/360_F_596626503_jrzjZNYStDexiWxQFqO7oCh6M8PdMlJs.jpg"
               className="d-block w-100"
               alt="..."
             />
           </div>
           <div className="carousel-item">
             <img
-              height={"450px"}
-              src="https://visme.co/blog/wp-content/uploads/ecommerce-trends.png"
+             
+              src="https://media.istockphoto.com/id/496604536/photo/exclusive-mens-clothing.jpg?s=170667a&w=0&k=20&c=zM-opP_YkwllzxpJLaAk2naq5gf6ygxdIQsuMQzzXXc="
               className="d-block w-100"
               alt="..."
             />
           </div>
           <div className="carousel-item">
             <img
-              height={"450px"}
-              src="https://esaproductmanager.com/wp-content/uploads/2019/01/ecommerce-checkout.png"
+              
+              src="https://t3.ftcdn.net/jpg/06/87/35/38/360_F_687353838_OkFmP2wZyg23Z4EtJTd1ugSWEvsdvI3H.jpg"
               className="d-block w-100"
               alt="..."
             />
@@ -109,7 +109,7 @@ export function SwipeItem() {
   useEffect(() => {
     new Swiper(".swiper", {
       modules: [Navigation, Pagination],
-      slidesPerView: 3,
+      slidesPerView: 4,
       spaceBetween: 30,
       pagination: {
         el: ".swiper-pagination",
@@ -117,12 +117,12 @@ export function SwipeItem() {
       },
       breakpoints: {
         450: {
-          slidesPerView: 1,
+          slidesPerView: 2,
           spaceBetween: 20,
         },
 
         1000: {
-          slidesPerView: 3,
+          slidesPerView: 4,
           spaceBetween: 20,
         },
       },
@@ -148,93 +148,102 @@ export function SwipeItem() {
   );
 }
 //FAQ
-export function Faq(){
+export function Faq() {
   return (
     <div className="container">
-    <div class="accordion accordion-flush" id="accordionFlushExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingOne">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseOne"
-            aria-expanded="false"
-            aria-controls="flush-collapseOne"
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseOne"
+              aria-expanded="false"
+              aria-controls="flush-collapseOne"
+            >
+              How can I track my order?
+            </button>
+          </h2>
+          <div
+            id="flush-collapseOne"
+            class="accordion-collapse collapse"
+            aria-labelledby="flush-headingOne"
+            data-bs-parent="#accordionFlushExample"
           >
-            Accordion Item #1
-          </button>
-        </h2>
-        <div
-          id="flush-collapseOne"
-          class="accordion-collapse collapse"
-          aria-labelledby="flush-headingOne"
-          data-bs-parent="#accordionFlushExample"
-        >
-          <div class="accordion-body">
-            Placeholder content for this accordion, which is intended to
-            demonstrate the <code>.accordion-flush</code> class. This is the
-            first item's accordion body.
+            <div class="accordion-body">
+              We've made order tracking easy for you! Once your order has been
+              processed and shipped, you will receive a confirmation email
+              containing a tracking number. You can use this tracking number to
+              monitor the status of your shipment on our website. Simply
+              navigate to the "Track Order" section, enter your tracking number,
+              and you'll get real-time updates on the whereabouts of your
+              package.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingTwo">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseTwo"
+              aria-expanded="false"
+              aria-controls="flush-collapseTwo"
+            >
+              What is your return policy?
+            </button>
+          </h2>
+          <div
+            id="flush-collapseTwo"
+            class="accordion-collapse collapse"
+            aria-labelledby="flush-headingTwo"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div class="accordion-body">
+              We want you to be completely satisfied with your purchase. If for
+              any reason you're not happy with your order, we offer a
+              hassle-free return policy. You can return any unused or defective
+              items within 30 days of delivery for a full refund or exchange.
+              Please make sure the items are in their original packaging with
+              all tags attached. To initiate a return, simply contact our
+              customer support team, and they will guide you through the
+              process.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingThree">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseThree"
+              aria-expanded="false"
+              aria-controls="flush-collapseThree"
+            >
+              Is it safe to shop on your website?
+            </button>
+          </h2>
+          <div
+            id="flush-collapseThree"
+            class="accordion-collapse collapse"
+            aria-labelledby="flush-headingThree"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div class="accordion-body">
+              Absolutely! The security of your personal information is our top
+              priority. Our website employs state-of-the-art encryption
+              technology to ensure that all your data, including payment
+              details, is protected and kept confidential. Additionally, we
+              never store your credit card information on our servers, making
+              your online transactions secure. You can shop with peace of mind
+              knowing that your privacy and security are our utmost concern.
+            </div>
           </div>
         </div>
       </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingTwo">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseTwo"
-            aria-expanded="false"
-            aria-controls="flush-collapseTwo"
-          >
-            Accordion Item #2
-          </button>
-        </h2>
-        <div
-          id="flush-collapseTwo"
-          class="accordion-collapse collapse"
-          aria-labelledby="flush-headingTwo"
-          data-bs-parent="#accordionFlushExample"
-        >
-          <div class="accordion-body">
-            Placeholder content for this accordion, which is intended to
-            demonstrate the <code>.accordion-flush</code> class. This is the
-            second item's accordion body. Let's imagine this being filled with
-            some actual content.
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingThree">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseThree"
-            aria-expanded="false"
-            aria-controls="flush-collapseThree"
-          >
-            Accordion Item #3
-          </button>
-        </h2>
-        <div
-          id="flush-collapseThree"
-          class="accordion-collapse collapse"
-          aria-labelledby="flush-headingThree"
-          data-bs-parent="#accordionFlushExample"
-        >
-          <div class="accordion-body">
-            Placeholder content for this accordion, which is intended to
-            demonstrate the <code>.accordion-flush</code> class. This is the
-            third item's accordion body. Nothing more exciting happening here in
-            terms of content, but just filling up the space to make it look, at
-            least at first glance, a bit more representative of how this would
-            look in a real-world application.
-          </div>
-        </div>
-      </div>
-    </div>
     </div>
   );
 }

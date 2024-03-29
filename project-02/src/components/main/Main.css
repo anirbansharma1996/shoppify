@@ -4,5 +4,14 @@
   height: 300px;
 }
 .swiper-slide {
-  background-color: orangered;
+  background-color: rgb(215, 253, 43);
+}
+.carousel-item > img {
+  height: 470px;
+}
+
+@media (max-width: 800px) {
+  .carousel-item > img {
+    height: 300px;
+  }
 }

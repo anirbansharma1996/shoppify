@@ -29,6 +29,7 @@ a > p:hover {
   justify-content: space-around;
   align-items: center;
   width: 30%;
+  margin-top: 0.5rem;
 }
 .mobile-nav{
     display: none;

@@ -13,20 +13,23 @@ export default function Footer() {
           <h1>.Shoppify</h1>
         </div>
         <div className="footer-info-one">
-        <dl>
-            <dt>About</dt>
-            <dd>About-1</dd>
-            <dd>About-1</dd>
-            <dd>About-1</dd>
-          </dl>
+        <h3>About Us</h3>
+            <ul>
+                <li>Our Story</li>
+                <li>Mission & Vision</li>
+                <li>Meet the Team</li>
+                <li>Contact Us</li>
+            </ul>
         </div>
         <div className="footer-info-two">
-          <dl>
-            <dt>Products</dt>
-            <dd>Products-1</dd>
-            <dd>Products-1</dd>
-            <dd>Products-1</dd>
-          </dl>
+        <h3>Our Services</h3>
+            <ul>
+                <li>Product Catalog</li>
+                <li>Order Tracking</li>
+                <li>Returns & Exchanges</li>
+                <li>Customer Support</li>
+            </ul>
+           
         </div>
         <div className="footer-contact">
           <i class="bi bi-facebook"></i>
