@@ -4,7 +4,9 @@
   height: 300px;
 }
 .swiper-slide {
-  background-color: rgb(215, 253, 43);
+  background-color: rgb(53, 53, 53);
+  text-align: center;
+  color: aliceblue;
 }
 .carousel-item > img {
   height: 470px;

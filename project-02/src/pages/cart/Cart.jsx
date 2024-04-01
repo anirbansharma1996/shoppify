@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { authContext } from "../../context/AuthContext";
 import CartCard from "./CartCard";
 import "./Cart.css";
 
 export default function Cart() {
+  const navigate = useNavigate();
+  const { isAuth } = useContext(authContext);
+  console.log(isAuth);
+
+  if (isAuth === "false") {
+    window.location.href = "/login";
+  }
+
   return (
     <div className="container mt-3">
       <CartCard />

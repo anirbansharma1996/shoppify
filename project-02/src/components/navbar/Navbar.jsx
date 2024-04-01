@@ -1,42 +1,44 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Navbar.css";
 import logo from "../../assets/logo.jpeg";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
+import { authContext } from "../../context/AuthContext";
+const links = [
+  {
+    p_name: `Home`,
+    p_icon: <i className="bi bi-house"></i>,
+    p_link: "/",
+  },
+  {
+    p_name: "Products",
+    p_icon: <i className="bi bi-list-task"></i>,
+    p_link: "/products",
+  },
+  {
+    p_name: (
+      <span class=" position-relative">
+        Cart
+        <span class="position-absolute top-2 start-100 translate-middle badge rounded-pill bg-danger">
+          0
+        </span>
+      </span>
+    ),
+    p_icon: <i className="bi bi-cart2"></i>,
+    p_link: "/cart",
+  },
+];
 
 export default function Navbar() {
-  const links = [
-    {
-      p_name: `Home`,
-      p_icon: <i className="bi bi-house"></i>,
-      p_link: "/",
-    },
-    {
-      p_name: "Products",
-      p_icon: <i className="bi bi-list-task"></i>,
-      p_link: "/products",
-    },
-    {
-      p_name: (
-        <span class=" position-relative">
-          Cart
-          <span class="position-absolute top-2 start-100 translate-middle badge rounded-pill bg-danger">
-            0
-          </span>
-        </span>
-      ),
-      p_icon: <i className="bi bi-cart2"></i>,
-      p_link: "/cart",
-    },
-    {
-      p_name: "Login",
-      p_icon: <i className="bi bi-person-lock"></i>,
-      p_link: "/login",
-    },
-  ];
+  const {isAuth} = useContext(authContext);
+  const data =
+    isAuth === "true"
+      ? JSON.parse(localStorage.getItem("shoppify-auth"))
+      : null;
+
 
   return (
     <nav>
-      <Link style={{color:"black"}} to="/">
+      <Link style={{ color: "black" }} to="/">
         <div className="nav-logo">
           <img src={logo} alt="logo" />
           <h3>.Shoppify</h3>
@@ -50,6 +52,19 @@ export default function Navbar() {
             </p>
           </a>
         ))}
+        {data ? (
+            <a href="/user">
+              <p>
+                <i className="bi bi-person"></i> {data.username}
+              </p>
+            </a>
+          ) : (
+            <a href="/login">
+              <p>
+                <i className="bi bi-person-lock"></i> Login
+              </p>
+            </a>
+          )}
       </div>
       <div
         className="mobile-nav"
@@ -82,6 +97,19 @@ export default function Navbar() {
               </p>
             </a>
           ))}
+          {data ? (
+            <a href="/user">
+              <p>
+                <i className="bi bi-person"></i> {data.username}
+              </p>
+            </a>
+          ) : (
+            <a href="/login">
+              <p>
+                <i className="bi bi-person-lock"></i> Login
+              </p>
+            </a>
+          )}
         </div>
       </div>
     </nav>

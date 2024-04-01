@@ -12,6 +12,8 @@ export default function Main() {
       <SwipeItem />
       <h3 className="text-center m-4">Best Seller Women's</h3>
       <SwipeItem />
+      <h3 className="text-center m-4">About Us </h3>
+      <AboutUs />
       <h3 className="text-center m-4">Frequently Asked Questions</h3>
       <Faq />
     </section>
@@ -52,26 +54,26 @@ export function HeroSlide() {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img
-             
               src="https://t4.ftcdn.net/jpg/05/96/62/65/360_F_596626503_jrzjZNYStDexiWxQFqO7oCh6M8PdMlJs.jpg"
               className="d-block w-100"
               alt="..."
+              style={{filter:`grayscale(100%)`}}
             />
           </div>
           <div className="carousel-item">
             <img
-             
               src="https://media.istockphoto.com/id/496604536/photo/exclusive-mens-clothing.jpg?s=170667a&w=0&k=20&c=zM-opP_YkwllzxpJLaAk2naq5gf6ygxdIQsuMQzzXXc="
               className="d-block w-100"
               alt="..."
+              style={{filter:`grayscale(100%)`}}
             />
           </div>
           <div className="carousel-item">
             <img
-              
               src="https://t3.ftcdn.net/jpg/06/87/35/38/360_F_687353838_OkFmP2wZyg23Z4EtJTd1ugSWEvsdvI3H.jpg"
               className="d-block w-100"
               alt="..."
+              style={{filter:`grayscale(100%)`}}
             />
           </div>
         </div>
@@ -241,6 +243,31 @@ export function Faq() {
               your online transactions secure. You can shop with peace of mind
               knowing that your privacy and security are our utmost concern.
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function AboutUs() {
+  return (
+    <div class="mb-3 container">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            
+            src="https://www.zuplic.com/wp-content/uploads/2018/07/eCommerce-Animated-GIF.gif"
+            class="img-fluid rounded-start "
+            alt="about us"
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <p class="card-text">
+             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur, cum ea assumenda quidem alias et ratione nam nulla, atque molestiae porro veniam consequatur blanditiis laboriosam nostrum mollitia cupiditate iusto esse modi suscipit, voluptate nobis magni sit illum? Perferendis reprehenderit hic nesciunt sapiente dolorem officia corrupti minus aperiam accusamus qui, ducimus officiis quam dicta! Voluptates maiores nesciunt aspernatur libero, ratione minus sunt? Eos illo consequuntur, recusandae dignissimos voluptatum rerum rem mollitia minus animi maxime praesentium quo quia impedit aspernatur exercitationem unde .
+            </p>
+            
           </div>
         </div>
       </div>
