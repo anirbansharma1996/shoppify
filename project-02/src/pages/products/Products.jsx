@@ -1,10 +1,23 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 import "./Products.css";
+import useFetchData from "../../custom/useFetchData";
+import Loader from "../../components/loader/Loader";
+import Error from "../../components/error/Error";
 
 export default function Products() {
+  const { data, loading, error } = useFetchData(
+    "https://fakestoreapi.com/products"
+  );
+  if (loading) {
+    return <Loader />;
+  }
+  if(error){
+    return <Error/>
+  }
+
   return (
-    <div className="container products-main">
+    <div className="products-main">
       <div className="product-filter container">
         <h4 className="mt-3">Find products accordingly</h4>
         <hr />
@@ -20,7 +33,11 @@ export default function Products() {
             <i class="bi bi-search"></i>
           </button>
         </div>
-        <ProductCard/>
+        <div className="product-card-main mt-3 mb-3">
+          {data?.map((el) => (
+            <ProductCard key={el.id} props={el} />
+          ))}
+        </div>
       </div>
     </div>
   );
