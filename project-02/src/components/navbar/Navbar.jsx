@@ -29,67 +29,24 @@ const links = [
 ];
 
 export default function Navbar() {
-  const {isAuth} = useContext(authContext);
+  const { isAuth } = useContext(authContext);
   const data =
     isAuth === "true"
       ? JSON.parse(localStorage.getItem("shoppify-auth"))
       : null;
 
 
+
   return (
-    <nav>
-      <Link style={{ color: "black" }} to="/">
-        <div className="nav-logo">
-          <img src={logo} alt="logo" />
-          <h3>.Shoppify</h3>
-        </div>
-      </Link>
-      <div className="nav-info">
-        {links.map((el) => (
-          <a href={el.p_link}>
-            <p>
-              {el.p_icon} {el.p_name}
-            </p>
-          </a>
-        ))}
-        {data ? (
-            <a href="/user">
-              <p>
-                <i className="bi bi-person"></i> {data.username}
-              </p>
-            </a>
-          ) : (
-            <a href="/login">
-              <p>
-                <i className="bi bi-person-lock"></i> Login
-              </p>
-            </a>
-          )}
-      </div>
-      <div
-        className="mobile-nav"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasRight"
-        aria-controls="offcanvasRight"
-      >
-        <i className="bi bi-list"></i>
-      </div>
-      <div
-        className="offcanvas offcanvas-end"
-        tabindex="-1"
-        id="offcanvasRight"
-        aria-labelledby="offcanvasRightLabel"
-      >
-        <div className="offcanvas-header">
-          <h5 id="offcanvasRightLabel"></h5>
-          <button
-            type="button"
-            className="btn-close text-reset"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div className="offcanvas-body">
+    <>
+      <nav >
+        <Link style={{ color: "black" }} to="/">
+          <div className="nav-logo">
+            <img src={logo} alt="logo" />
+            <h3>.Shoppify</h3>
+          </div>
+        </Link>
+        <div className="nav-info">
           {links.map((el) => (
             <a href={el.p_link}>
               <p>
@@ -111,7 +68,54 @@ export default function Navbar() {
             </a>
           )}
         </div>
-      </div>
-    </nav>
+        <div
+          className="mobile-nav"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight"
+        >
+          <i className="bi bi-list"></i>
+        </div>
+        <div
+          className="offcanvas offcanvas-end"
+          tabindex="-1"
+          id="offcanvasRight"
+          aria-labelledby="offcanvasRightLabel"
+        >
+          <div className="offcanvas-header">
+            <h5 id="offcanvasRightLabel"></h5>
+            <button
+              type="button"
+              className="btn-close text-reset"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div className="offcanvas-body">
+            {links.map((el) => (
+              <a href={el.p_link}>
+                <p>
+                  {el.p_icon} {el.p_name}
+                </p>
+              </a>
+            ))}
+            {data ? (
+              <a href="/user">
+                <p>
+                  <i className="bi bi-person"></i> {data.username}
+                </p>
+              </a>
+            ) : (
+              <a href="/login">
+                <p>
+                  <i className="bi bi-person-lock"></i> Login
+                </p>
+              </a>
+            )}
+          </div>
+        </div>
+      </nav>
+      
+    </>
   );
 }

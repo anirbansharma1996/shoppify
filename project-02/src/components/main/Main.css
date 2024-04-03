@@ -1,16 +1,43 @@
+.carousel-item > img {
+  height: 470px;
+}
 .swiper {
   width: 90%;
   margin: auto;
   height: 300px;
 }
 .swiper-slide {
-  background-color: rgb(53, 53, 53);
-  text-align: center;
-  color: aliceblue;
+  border: 1px dashed black;
+  cursor: pointer;
+  color: white;
+  position: relative;
+  transition: 0.4s;
 }
-.carousel-item > img {
-  height: 470px;
+.swiper-slide > img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  padding: 4px;
 }
+.swiper-slide-info {
+  background-color: rgba(0, 0, 0, 0.723);
+  position: absolute;
+  bottom: 0;
+  display: none;
+  width: 100%;
+  padding: 5px;
+  height: 200px;
+}
+.swiper-slide:hover > .swiper-slide-info {
+  display: block;
+}
+.go-to-top{
+  position: fixed;
+  z-index: 99;
+  bottom: 10px;
+  right: 10px;
+}
+
 
 @media (max-width: 800px) {
   .carousel-item > img {

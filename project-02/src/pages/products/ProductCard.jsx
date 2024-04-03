@@ -11,7 +11,7 @@ export default function ProductCard({ props }) {
   };
 
   return (
-    <div class="card" key={id} onClick={() => handleClick(id)}>
+    <div class="card " key={id} onClick={() => handleClick(id)}>
       <img src={image} class="card-img-top" alt={title} />
       <div class="card-body">
         <span>{category}</span>

@@ -1,17 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import "./Main.css";
 import Swiper from "swiper";
 import "swiper/css";
 import { Navigation, Pagination } from "swiper/modules";
+import useFetchData from "../../custom/useFetchData";
+import { useNavigate } from "react-router-dom";
 
 export default function Main() {
+  const { data, loading, error } = useFetchData(
+    "https://fakestoreapi.com/products"
+  );
+
+  const m_data = data.filter((el) => el.category === "men's clothing");
+  const f_data = data.filter((el) => el.category === "women's clothing");
+
   return (
     <section>
       <HeroSlide />
       <h3 className="text-center m-4">Best Seller Men's</h3>
-      <SwipeItem />
+      <SwipeItem props={m_data} />
       <h3 className="text-center m-4">Best Seller Women's</h3>
-      <SwipeItem />
+      <SwipeItem props={f_data} />
       <h3 className="text-center m-4">About Us </h3>
       <AboutUs />
       <h3 className="text-center m-4">Frequently Asked Questions</h3>
@@ -22,9 +31,16 @@ export default function Main() {
 
 // Hero Section
 export function HeroSlide() {
+  const gotoTop = useRef(null);
+
+  const handleGoToTop = () => {
+    gotoTop.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
       <div
+        ref={gotoTop}
         id="carouselExampleIndicators"
         className="carousel slide"
         data-bs-ride="carousel"
@@ -102,12 +118,19 @@ export function HeroSlide() {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
+      <div className="go-to-top">
+        <button className="btn btn-dark" onClick={handleGoToTop}>
+          <i class="bi bi-arrow-up-circle-fill"></i>
+        </button>
+      </div>
     </>
   );
 }
 
 //Swiper function
-export function SwipeItem() {
+export function SwipeItem({ props }) {
+  const navigate = useNavigate();
+
   useEffect(() => {
     new Swiper(".swiper", {
       modules: [Navigation, Pagination],
@@ -135,13 +158,35 @@ export function SwipeItem() {
     <div className="swiper">
       <div className="swiper-wrapper">
         {/* Slides */}
-        <div className="swiper-slide">Slide 1</div>
-        <div className="swiper-slide">Slide 2</div>
-        <div className="swiper-slide">Slide 3</div>
-        <div className="swiper-slide">Slide 4</div>
-        <div className="swiper-slide">Slide 5</div>
-        <div className="swiper-slide">Slide 6</div>
-        {/* Add more slides here */}
+        {props?.map((el) => (
+          <div className="swiper-slide" key={el.id}>
+            <img src={el.image} alt={el.title} />
+            <div className="swiper-slide-info">
+              <span>{el.category}</span>
+              <h6 class="card-title">{el.title.substring(0, 40)}</h6>
+              <div className="d-flex">
+                Price :{" "}
+                <s style={{ color: "grey" }}>
+                  $ {Math.round(el.price) * 80 + 236}
+                </s>
+                &nbsp;
+                <h5>$ {Math.round(el.price) * 80}</h5>
+              </div>
+              <div className="d-flex mt-5">
+                <button
+                  className="btn btn-secondary w-100"
+                  onClick={() => navigate(`/product/${el.id}`)}
+                >
+                  <i class="bi bi-eye"></i>
+                </button>
+                &nbsp;
+                <button className="btn btn-secondary w-100">
+                  <i class="bi bi-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
       <div className="swiper-pagination"></div>
       <div className="swiper-button-prev"></div>
