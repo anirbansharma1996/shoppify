@@ -6,9 +6,7 @@ import Loader from "../../components/loader/Loader";
 import Error from "../../components/error/Error";
 
 export default function Products() {
-  const { data, loading, error } = useFetchData(
-    "https://fakestoreapi.com/products"
-  );
+  const { data, loading, error } = useFetchData("https://fakestoreapi.com/products");
   const [products, setProducts] = useState([]);
   const [searchProduts, setSearchProduts] = useState([]);
 
@@ -34,10 +32,10 @@ export default function Products() {
   };
 
   const searchData = debounce((text) => {
-    const s_data = [...data].filter(
-      (el) => el.category.toLowerCase() === text.toLowerCase()
+    const s_data = data.filter(
+      (el) => el.category.toLowerCase().includes(text.toLowerCase())
     );
-    console.log(s_data);
+    
     setProducts(s_data);
   }, 500);
 
