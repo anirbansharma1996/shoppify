@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Products.css";
 import useFetchData from "../../custom/useFetchData";
 import { useParams, Link } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import Error from "../../components/error/Error";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SoloProduct() {
   const { id } = useParams();
@@ -35,10 +37,25 @@ export default function SoloProduct() {
 }
 
 export function ProductDetails({ props }) {
+  const [cartdata, setCartData] = useState(
+    JSON.parse(localStorage.getItem("shoppify-cart")) || []
+  );
+  const auth_status = localStorage.getItem("shoppify-auth-status");
+
   const { category, description, id, image, price, rating, title } = props;
+  const handleAddtoCart = (data) => {
+    if (!!auth_status) {
+      (window.location.href = "/login");
+    } else {
+      const c_data = [...cartdata, data];
+      setCartData(c_data);
+      localStorage.setItem("shoppify-cart", JSON.stringify(c_data));
+      toast.success("Added to Cart !");
+    }
+  };
 
   return (
-    <div className="mb-3">
+    <div className="mb-3" key={id}>
       <div className="row g-0">
         <div className="col-md-4">
           <img src={image} className="img-fluid rounded-start" alt={title} />
@@ -60,10 +77,16 @@ export function ProductDetails({ props }) {
                 $ {Math.round(price) * 80}
               </h4>
             </div>
-            <button className="btn btn-dark ">Add to Cart</button>
+            <button
+              onClick={() => handleAddtoCart(props)}
+              className="btn btn-dark "
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

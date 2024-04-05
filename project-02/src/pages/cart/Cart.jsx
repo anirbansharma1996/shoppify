@@ -1,31 +1,53 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authContext } from "../../context/AuthContext";
 import CartCard from "./CartCard";
 import "./Cart.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { cartContext } from "../../context/CartContext";
 
 export default function Cart() {
   const navigate = useNavigate();
   const { isAuth } = useContext(authContext);
-  console.log(isAuth);
+  const { cart, counts, handleRemoveCartItem, handleDec, handleInc ,removeCartItems} =
+    useContext(cartContext);
 
   if (isAuth === "false") {
     window.location.href = "/login";
   }
 
+  const total = cart.reduce((initial, el) => initial + el.price, 0);
+ 
   return (
     <div className="container mt-3">
-      <CartCard />
+      {cart?.length > 0 ? (
+        cart?.map((el) => (
+          <CartCard
+            props={el}
+            handleRemoveCartItem={handleRemoveCartItem}
+            counts={counts}
+            handleDec={handleDec}
+            handleInc={handleInc}
+          />
+        ))
+      ) : (
+        <div style={{ height: "40vh", textAlign: "center" }}>
+          Add items first
+        </div>
+      )}
       <hr />
-      <Checkoutfn />
+      <ToastContainer />
+      <Checkoutfn props={total} />
     </div>
   );
 }
 
-export function Checkoutfn() {
+export function Checkoutfn({ props }) {
+  const { removeCartItems } = useContext(cartContext);
   return (
     <div className="text-end">
-      <h3>Total : ₹ 1000/-</h3>
+      <h3>Total : ${Math.round(props) * 80}/-</h3>
       <button
         className="btn btn-dark"
         data-bs-toggle="modal"
@@ -46,7 +68,7 @@ export function Checkoutfn() {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">
-                ₹ Payment
+                Payment of ${Math.round(props) * 80}/-
               </h5>
               <button
                 type="button"
@@ -63,6 +85,7 @@ export function Checkoutfn() {
                 type="button"
                 class="btn btn-success w-100"
                 data-bs-dismiss="modal"
+                onClick={removeCartItems}
               >
                 Pay
               </button>

@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Main.css";
 import Swiper from "swiper";
 import "swiper/css";
 import { Navigation, Pagination } from "swiper/modules";
 import useFetchData from "../../custom/useFetchData";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Main() {
   const { data, loading, error } = useFetchData(
@@ -129,7 +131,17 @@ export function HeroSlide() {
 
 //Swiper function
 export function SwipeItem({ props }) {
+  const [cartdata, setCartData] = useState(
+    JSON.parse(localStorage.getItem("shoppify-cart")) || []
+  );
   const navigate = useNavigate();
+
+  const handleAddtoCart = (data) => {
+    const c_data = [...cartdata, data];
+    setCartData(c_data);
+    localStorage.setItem("shoppify-cart", JSON.stringify(c_data));
+    toast.success("Added to Cart !");
+  };
 
   useEffect(() => {
     new Swiper(".swiper", {
@@ -155,43 +167,49 @@ export function SwipeItem({ props }) {
   }, []);
 
   return (
-    <div className="swiper">
-      <div className="swiper-wrapper">
-        {/* Slides */}
-        {props?.map((el) => (
-          <div className="swiper-slide" key={el.id}>
-            <img src={el.image} alt={el.title} />
-            <div className="swiper-slide-info">
-              <span>{el.category}</span>
-              <h6 class="card-title">{el.title.substring(0, 40)}</h6>
-              <div className="d-flex">
-                Price :{" "}
-                <s style={{ color: "grey" }}>
-                  $ {Math.round(el.price) * 80 + 236}
-                </s>
-                &nbsp;
-                <h5>$ {Math.round(el.price) * 80}</h5>
-              </div>
-              <div className="d-flex mt-5">
-                <button
-                  className="btn btn-secondary w-100"
-                  onClick={() => navigate(`/product/${el.id}`)}
-                >
-                  <i class="bi bi-eye"></i>
-                </button>
-                &nbsp;
-                <button className="btn btn-secondary w-100">
-                  <i class="bi bi-cart"></i>
-                </button>
+    <>
+      <div className="swiper">
+        <div className="swiper-wrapper">
+          {/* Slides */}
+          {props?.map((el) => (
+            <div className="swiper-slide" key={el.id}>
+              <img src={el.image} alt={el.title} />
+              <div className="swiper-slide-info">
+                <span>{el.category}</span>
+                <h6 class="card-title">{el.title.substring(0, 40)}</h6>
+                <div className="d-flex">
+                  Price :{" "}
+                  <s style={{ color: "grey" }}>
+                    $ {Math.round(el.price) * 80 + 236}
+                  </s>
+                  &nbsp;
+                  <h5>$ {Math.round(el.price) * 80}</h5>
+                </div>
+                <div className="d-flex mt-5">
+                  <button
+                    className="btn btn-secondary w-100"
+                    onClick={() => navigate(`/product/${el.id}`)}
+                  >
+                    <i class="bi bi-eye"></i>
+                  </button>
+                  &nbsp;
+                  <button
+                    className="btn btn-secondary w-100"
+                    onClick={() => handleAddtoCart(el)}
+                  >
+                    <i class="bi bi-cart"></i>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        <div className="swiper-pagination"></div>
+        <div className="swiper-button-prev"></div>
+        <div className="swiper-button-next"></div>
       </div>
-      <div className="swiper-pagination"></div>
-      <div className="swiper-button-prev"></div>
-      <div className="swiper-button-next"></div>
-    </div>
+      <ToastContainer />
+    </>
   );
 }
 //FAQ

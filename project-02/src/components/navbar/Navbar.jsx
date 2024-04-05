@@ -3,30 +3,7 @@ import "./Navbar.css";
 import logo from "../../assets/logo.jpeg";
 import { Link } from "react-router-dom";
 import { authContext } from "../../context/AuthContext";
-const links = [
-  {
-    p_name: `Home`,
-    p_icon: <i className="bi bi-house"></i>,
-    p_link: "/",
-  },
-  {
-    p_name: "Products",
-    p_icon: <i className="bi bi-list-task"></i>,
-    p_link: "/products",
-  },
-  {
-    p_name: (
-      <span class=" position-relative">
-        Cart
-        <span class="position-absolute top-2 start-100 translate-middle badge rounded-pill bg-danger">
-          0
-        </span>
-      </span>
-    ),
-    p_icon: <i className="bi bi-cart2"></i>,
-    p_link: "/cart",
-  },
-];
+import { cartContext } from "../../context/CartContext";
 
 export default function Navbar() {
   const { isAuth } = useContext(authContext);
@@ -35,11 +12,35 @@ export default function Navbar() {
       ? JSON.parse(localStorage.getItem("shoppify-auth"))
       : null;
 
+  const { cart } = useContext(cartContext);
 
-
+  const links = [
+    {
+      p_name: `Home`,
+      p_icon: <i className="bi bi-house"></i>,
+      p_link: "/",
+    },
+    {
+      p_name: "Products",
+      p_icon: <i className="bi bi-list-task"></i>,
+      p_link: "/products",
+    },
+    {
+      p_name: (
+        <span class=" position-relative">
+          Cart
+          <span class="position-absolute top-2 start-100 translate-middle badge rounded-pill bg-danger">
+            {cart?.length}
+          </span>
+        </span>
+      ),
+      p_icon: <i className="bi bi-cart2"></i>,
+      p_link: "/cart",
+    },
+  ];
   return (
     <>
-      <nav >
+      <nav>
         <Link style={{ color: "black" }} to="/">
           <div className="nav-logo">
             <img src={logo} alt="logo" />
@@ -115,7 +116,6 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-      
     </>
   );
 }
