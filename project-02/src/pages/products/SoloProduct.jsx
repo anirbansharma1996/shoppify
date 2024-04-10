@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Products.css";
 import useFetchData from "../../custom/useFetchData";
 import { useParams, Link } from "react-router-dom";
@@ -43,9 +43,11 @@ export function ProductDetails({ props }) {
   const auth_status = localStorage.getItem("shoppify-auth-status");
 
   const { category, description, id, image, price, rating, title } = props;
+
+
   const handleAddtoCart = (data) => {
-    if (!!auth_status) {
-      (window.location.href = "/login");
+    if (auth_status === false) {
+      window.location.href = "/login";
     } else {
       const c_data = [...cartdata, data];
       setCartData(c_data);

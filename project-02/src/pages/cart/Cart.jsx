@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { authContext } from "../../context/AuthContext";
 import CartCard from "./CartCard";
 import "./Cart.css";
@@ -8,12 +7,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { cartContext } from "../../context/CartContext";
 
 export default function Cart() {
-  const navigate = useNavigate();
   const { isAuth } = useContext(authContext);
-  const { cart, counts, handleRemoveCartItem, handleDec, handleInc ,removeCartItems} =
+  const { cart, counts, handleRemoveCartItem, handleDec, handleInc } =
     useContext(cartContext);
+   
 
-  if (isAuth === "false") {
+  if (isAuth == false) {
     window.location.href = "/login";
   }
 
@@ -44,10 +43,10 @@ export default function Cart() {
 }
 
 export function Checkoutfn({ props }) {
-  const { removeCartItems } = useContext(cartContext);
+  const { removeCartItems, totalBill } = useContext(cartContext);
   return (
     <div className="text-end">
-      <h3>Total : ${Math.round(props) * 80}/-</h3>
+      <h3>Total : ${Math.round(totalBill) * 80}/-</h3>
       <button
         className="btn btn-dark"
         data-bs-toggle="modal"
@@ -68,7 +67,7 @@ export function Checkoutfn({ props }) {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">
-                Payment of ${Math.round(props) * 80}/-
+                Payment of ${Math.round(totalBill) * 80}/-
               </h5>
               <button
                 type="button"

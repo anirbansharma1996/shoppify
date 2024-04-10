@@ -6,15 +6,16 @@ export const authContext = createContext();
 export default function AuthContextProvider({ children }) {
   const navigate = useNavigate();
   const [isAuth, setIsAuth] = useState(
-    localStorage.getItem("shoppify-auth-status") || false
+    localStorage.getItem("shoppify-auth-status")
   );
 
   const handleLogout = () => {
     let bool = window.confirm("do you want to logout ? ");
     if (bool) {
       localStorage.setItem("shoppify-auth-status", false);
+      localStorage.removeItem("shoppify-cart")
       setIsAuth(false);
-      navigate("/login");
+      window.location.href = "/login";
     }
   };
 

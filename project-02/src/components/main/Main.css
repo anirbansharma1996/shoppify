@@ -12,12 +12,14 @@
   color: white;
   position: relative;
   transition: 0.4s;
+  border-radius: 20px;
 }
 .swiper-slide > img {
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: contain;
-  padding: 4px;
+  padding: 24px;
+  height: 38vh;
 }
 .swiper-slide-info {
   background-color: rgba(0, 0, 0, 0.723);

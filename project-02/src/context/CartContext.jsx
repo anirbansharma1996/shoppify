@@ -10,8 +10,8 @@ export default function CartContextProvider({ children }) {
   );
 
   useEffect(() => {
-    setCart((prev) => cart);
-  }, [cart.length]);
+    localStorage.setItem("shoppify-cart", JSON.stringify(cart));
+  }, [cart]);
 
   const [counts, setCounts] = useState({});
 
@@ -34,6 +34,11 @@ export default function CartContextProvider({ children }) {
     setCart([]);
     //window.localtion.href="/payment-success"
   };
+ 
+  const totalBill = cart.reduce((total, el) => {
+    const itemTotal = (counts[el.id] || 1) * el.price;
+    return total + itemTotal;
+  }, 0);
 
   return (
     <cartContext.Provider
@@ -44,6 +49,7 @@ export default function CartContextProvider({ children }) {
         handleDec,
         handleInc,
         removeCartItems,
+        totalBill
       }}
     >
       {children}
